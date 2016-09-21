@@ -116,8 +116,6 @@ export class BenefitsCalculatorComponent implements OnInit {
     this.totals.savings = this.totals.wellness.employee + this.totals.wellness.spouse + this.totals.wellness.children;
 
     this.totals.total = this.totals.insurance - this.totals.savings;
-
-    console.log(this.totals);
   }
 
 }
