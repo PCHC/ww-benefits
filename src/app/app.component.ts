@@ -9,5 +9,5 @@ import { BenefitsCalculatorComponent } from './benefits-calculator/benefits-calc
   directives: [BenefitsCalculatorComponent]
 })
 export class AppComponent {
-  title = 'app works!';
+  title = 'Health Insurance Cost & Savings Estimator';
 }
