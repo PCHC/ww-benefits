@@ -18,7 +18,7 @@
       </div><!-- /form column -->
     </div><!-- /employment row -->
 
-    <div class="row" id="insurance" [hidden]="!calc.employStatus">
+    <div class="row" id="insurance" *ngIf="calc.employStatus">
       <div class="col s2">
         <div class="card-panel blue">
           <h3 class="white-text center-align">2</h3>
@@ -39,7 +39,7 @@
               </div>
             </div><!-- /plan row -->
 
-            <div class="row" id="coverage" [hidden]="!calc.insPlan">
+            <div class="row" id="coverage" *ngIf="calc.insPlan">
               <div class="col s12">
                 <p>
                   <input type="checkbox" id="coverage__myself" checked="checked" disabled="disabled" [(ngModel)]="calc.coverage.myself"  (ngModelChange)="doCalc($event)" />
@@ -61,7 +61,7 @@
       </div><!-- /form column -->
     </div><!-- /insurance row -->
 
-    <div class="row" id="wellness" [hidden]="!calc.employStatus">
+    <div class="row" id="wellness" *ngIf="calc.employStatus">
       <div class="col s2">
         <div class="card-panel blue">
           <h3 class="white-text center-align">3</h3>
@@ -78,7 +78,7 @@
                 <input type="checkbox" id="ww__myself" [(ngModel)]="calc.wellness.myself.participation"  (ngModelChange)="doCalc($event)" />
                 <label for="ww__myself">Myself</label>
               </p>
-              <div class="row" [hidden]="!calc.wellness.myself.participation">
+              <div class="row" *ngIf="calc.wellness.myself.participation">
                 <p class="col s11 offset-s1 range-field">
                   <label>Biometrics Acheived:</label>
 
@@ -92,12 +92,12 @@
               </div><!-- /myself biometrics -->
             </div><!-- /myself wellness -->
 
-            <div class="row" [hidden]="!calc.coverage.spouse">
+            <div class="row" *ngIf="calc.coverage.spouse">
               <p class="col s12">
                 <input type="checkbox" id="ww__spouse" [(ngModel)]="calc.wellness.spouse.participation"  (ngModelChange)="doCalc($event)" />
                 <label for="ww__spouse">Spouse/Partner</label>
               </p>
-              <div class="row" [hidden]="!calc.wellness.spouse.participation">
+              <div class="row" *ngIf="calc.wellness.spouse.participation">
                 <p class="col s11 offset-s1">
                   <label>Biometrics Acheived:</label>
 
@@ -111,7 +111,7 @@
               </div><!-- /spouse biometrics -->
             </div><!-- /spouse wellness -->
 
-            <div class="row" [hidden]="!calc.coverage.child">
+            <div class="row" *ngIf="calc.coverage.child">
               <p class="col s12">
                 <input type="checkbox" id="ww__child" [(ngModel)]="calc.wellness.child.participation"  (ngModelChange)="doCalc($event)" />
                 <label for="ww__child">Child(ren)</label>
@@ -152,15 +152,15 @@
         <div class="card-content">
           <span class="card-title">Wellness Credits</span>
           <p class="card-total">${{ totals.savings }}</p>
-          <p [hidden]="!totals.savings">Annual savings of <strong>${{ totals.savings * 26 }}</strong></p>
+          <p *ngIf="totals.savings">Annual savings of <strong>${{ totals.savings * 26 }}</strong></p>
         </div>
       </div><!-- /wellness credits card -->
 
-      <div class="card gray lighten-5 center-align" [hidden]="!calc.wellness.myself.participation && !calc.wellness.spouse.participation">
+      <div class="card gray lighten-5 center-align" *ngIf="calc.wellness.myself.participation && calc.wellness.spouse.participation">
         <div class="card-content">
           <span class="card-title">Wellness Reimbursements</span>
-          <p class="left-align" [hidden]="!calc.wellness.myself.participation">You are eligible for <strong>$250</strong> annual reimbursement for approved wellness expenses.</p>
-          <p class="left-align" [hidden]="!calc.wellness.spouse.participation">Your spouse/partner is eligible for <strong>$150</strong> annual reimbursement for approved wellness expenses.</p>
+          <p class="left-align" *ngIf="calc.wellness.myself.participation">You are eligible for <strong>$250</strong> annual reimbursement for approved wellness expenses.</p>
+          <p class="left-align" *ngIf="calc.wellness.spouse.participation">Your spouse/partner is eligible for <strong>$150</strong> annual reimbursement for approved wellness expenses.</p>
         </div>
       </div><!-- /wellness credits card -->
 
