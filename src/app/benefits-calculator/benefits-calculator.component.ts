@@ -122,4 +122,41 @@ export class BenefitsCalculatorComponent implements OnInit, AfterViewInit {
     this.totals.total = this.totals.insurance - this.totals.savings;
   }
 
+  resetCalc(){
+    this.calc = {
+      employStatus: '',
+      insPlan: '',
+      coverage: {
+        myself: true,
+        spouse: false,
+        child: false,
+        family: false
+      },
+      wellness: {
+        myself: {
+          participation: false,
+          biometrics: ''
+        },
+        spouse: {
+          participation: false,
+          biometrics: ''
+        },
+        child: {
+          participation: false
+        }
+      }
+    }
+
+    this.totals = {
+      insurance: 0,
+      wellness: {
+        employee: 0,
+        spouse: 0,
+        children: 0
+      },
+      savings: 0,
+      total: 0
+    }
+  }
+
 }
