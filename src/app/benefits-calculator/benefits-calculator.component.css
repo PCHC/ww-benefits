@@ -1,0 +1,12 @@
+.totals-wrapper {
+  max-width: 295px;
+}
+
+.card .card-content .card-title {
+  line-height: 1.25;
+}
+
+.card .card-content .card-total {
+  font-size: 1.75em;
+  font-weight: bold;
+}

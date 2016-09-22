@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import './benefits.json';
 declare var Materialize:any;
 declare var jQuery:any;
@@ -9,7 +9,7 @@ declare var jQuery:any;
   templateUrl: 'benefits-calculator.component.html',
   styleUrls: ['benefits-calculator.component.css']
 })
-export class BenefitsCalculatorComponent implements OnInit {
+export class BenefitsCalculatorComponent implements OnInit, AfterViewInit {
   public benefits;
 
   public calc = {
@@ -52,8 +52,12 @@ export class BenefitsCalculatorComponent implements OnInit {
   }
 
   ngOnInit() {
+
+  }
+
+  ngAfterViewInit() {
     jQuery(document).ready(function() {
-      jQuery('select').material_select();
+      jQuery('.totals-wrapper').pushpin({ top: jQuery('.totals-wrapper').offset().top });
     });
   }
 
