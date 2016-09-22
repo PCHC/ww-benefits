@@ -152,6 +152,7 @@
         <div class="card-content">
           <span class="card-title">Wellness Credits</span>
           <p class="card-total">${{ totals.savings }}</p>
+          <p [hidden]="!totals.savings">Annual savings of <strong>${{ totals.savings * 26 }}</strong></p>
         </div>
       </div><!-- /wellness credits card -->
 
