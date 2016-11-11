@@ -1,0 +1,169 @@
+<div class="row">
+  <form class="col s8">
+
+    <div class="row" id="employStatus">
+      <div class="col s2">
+        <div class="card-panel blue">
+          <h3 class="white-text center-align">1</h3>
+        </div>
+      </div><!-- /step column -->
+      <div class="col s10">
+        <h4>Employment Status</h4>
+        <label>Employment Status</label>
+        <select [(ngModel)]="calc.employStatus" (ngModelChange)="doCalc($event)" class="browser-default">
+          <option value="" disabled selected>Choose...</option>
+          <option value="fullTime">Full-Time (40 hours per week) or Part-Time (30-39 hours per week)</option>
+          <option value="partTime">Part-Time (20-29 hours per week)</option>
+        </select>
+      </div><!-- /form column -->
+    </div><!-- /employment row -->
+
+    <div class="row" id="insurance" *ngIf="calc.employStatus">
+      <div class="col s2">
+        <div class="card-panel blue">
+          <h3 class="white-text center-align">2</h3>
+        </div>
+      </div><!-- /step column -->
+      <div class="col s10">
+        <div class="row">
+          <div class="col s12">
+            <h4>Health Insurance Coverage:</h4>
+
+            <div class="row" id="insPlan">
+              <div class="col s12">
+                <label>Health Insurance Plan</label>
+                <select [(ngModel)]="calc.insPlan" (ngModelChange)="doCalc($event)" class="browser-default">
+                  <option value="" disabled selected>Choose...</option>
+                  <option *ngFor="let p of benefits.plans" value="{{p.id}}">{{ p.name }}</option>
+                </select>
+              </div>
+            </div><!-- /plan row -->
+
+            <div class="row" id="coverage" *ngIf="calc.insPlan">
+              <div class="col s12">
+                <p>
+                  <input type="checkbox" id="coverage__myself" checked="checked" disabled="disabled" [(ngModel)]="calc.coverage.myself"  (ngModelChange)="doCalc($event)" />
+                  <label for="coverage__myself">Myself</label>
+                </p>
+                <p>
+                  <input type="checkbox" id="coverage__spouse" [(ngModel)]="calc.coverage.spouse"  (ngModelChange)="doCalc($event)" />
+                  <label for="coverage__spouse">Spouse/Partner</label>
+                </p>
+                <p>
+                  <input type="checkbox" id="coverage__child" [(ngModel)]="calc.coverage.child"  (ngModelChange)="doCalc($event)" />
+                  <label for="coverage__child">Child(ren)</label>
+                </p>
+              </div>
+            </div><!-- /coverage row -->
+
+          </div>
+        </div>
+      </div><!-- /form column -->
+    </div><!-- /insurance row -->
+
+    <div class="row" id="wellness" *ngIf="calc.employStatus">
+      <div class="col s2">
+        <div class="card-panel blue">
+          <h3 class="white-text center-align">3</h3>
+        </div>
+      </div><!-- /step column -->
+      <div class="col s10">
+
+        <h4>WellnessWorks Participation:</h4>
+
+        <div class="row">
+          <div class="col s12">
+            <div class="row">
+              <p class="col s12">
+                <input type="checkbox" id="ww__myself" [(ngModel)]="calc.wellness.myself.participation"  (ngModelChange)="doCalc($event)" />
+                <label for="ww__myself">Myself</label>
+              </p>
+              <div class="row" *ngIf="calc.wellness.myself.participation">
+                <p class="col s11 offset-s1 range-field">
+                  <label>Biometrics Acheived:</label>
+
+                  <select [(ngModel)]="calc.wellness.myself.biometrics" (ngModelChange)="doCalc($event)" class="browser-default">
+                    <option value="" disabled selected>Choose...</option>
+                    <option value="bronze">Bronze (3 of 5)</option>
+                    <option value="silver">Silver (4 of 5)</option>
+                    <option value="gold">Gold (5 of 5)</option>
+                  </select>
+                </p>
+              </div><!-- /myself biometrics -->
+            </div><!-- /myself wellness -->
+
+            <div class="row" *ngIf="calc.coverage.spouse">
+              <p class="col s12">
+                <input type="checkbox" id="ww__spouse" [(ngModel)]="calc.wellness.spouse.participation"  (ngModelChange)="doCalc($event)" />
+                <label for="ww__spouse">Spouse/Partner</label>
+              </p>
+              <div class="row" *ngIf="calc.wellness.spouse.participation">
+                <p class="col s11 offset-s1">
+                  <label>Biometrics Acheived:</label>
+
+                  <select [(ngModel)]="calc.wellness.spouse.biometrics" (ngModelChange)="doCalc($event)" class="browser-default">
+                    <option value="" disabled selected>Choose...</option>
+                    <option value="bronze">Bronze (3 of 5)</option>
+                    <option value="silver">Silver (4 of 5)</option>
+                    <option value="gold">Gold (5 of 5)</option>
+                  </select>
+                </p>
+              </div><!-- /spouse biometrics -->
+            </div><!-- /spouse wellness -->
+
+            <div class="row" *ngIf="calc.coverage.child">
+              <p class="col s12">
+                <input type="checkbox" id="ww__child" [(ngModel)]="calc.wellness.child.participation"  (ngModelChange)="doCalc($event)" />
+                <label for="ww__child">Child(ren)</label>
+              </p>
+            </div><!-- /child wellness -->
+
+          </div>
+        </div>
+
+      </div><!-- /form column -->
+    </div><!-- /wellness row -->
+
+    <div class="row">
+      <div class="col s10 offset-s2">
+        <a class="waves-effect waves-light btn red" (click)="resetCalc()"><i class="material-icons left">loop</i>Start Over</a>
+      </div>
+    </div>
+  </form><!-- /form column -->
+
+  <div class="col s4">
+    <div class="totals-wrapper">
+
+      <div class="card green darken-1 center-align">
+        <div class="card-content white-text">
+          <span class="card-title">Biweekly Total</span>
+          <p class="card-total">${{ totals.total }}</p>
+        </div>
+      </div><!-- /biweekly cost card -->
+
+      <div class="card red lighten-5 center-align">
+        <div class="card-content">
+          <span class="card-title">Insurance Cost</span>
+          <p class="card-total">${{ totals.insurance }}</p>
+        </div>
+      </div><!-- /insurance cost card -->
+
+      <div class="card blue lighten-5 center-align">
+        <div class="card-content">
+          <span class="card-title">Wellness Credits</span>
+          <p class="card-total">${{ totals.savings }}</p>
+          <p *ngIf="totals.savings">Annual savings of <strong>${{ totals.savings * 26 }}</strong></p>
+        </div>
+      </div><!-- /wellness credits card -->
+
+      <div class="card gray lighten-5 center-align" *ngIf="calc.wellness.myself.participation && calc.wellness.spouse.participation">
+        <div class="card-content">
+          <span class="card-title">Wellness Reimbursements</span>
+          <p class="left-align" *ngIf="calc.wellness.myself.participation">You are eligible for <strong>$250</strong> annual reimbursement for approved wellness expenses.</p>
+          <p class="left-align" *ngIf="calc.wellness.spouse.participation">Your spouse/partner is eligible for <strong>$150</strong> annual reimbursement for approved wellness expenses.</p>
+        </div>
+      </div><!-- /wellness credits card -->
+
+    </div><!-- /totals wrapper -->
+  </div><!-- /totals column -->
+</div>
