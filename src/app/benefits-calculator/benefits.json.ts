@@ -2,22 +2,6 @@ var benefitsJSON = {
   "plans": [
     {
       "id": 1,
-      "name": "Preferred Provider Organization (PPO)",
-      "fullTime": {
-        "employee": 81,
-        "children": 66,
-        "spouse": 139,
-        "family": 83
-      },
-      "partTime": {
-        "employee": 149,
-        "children": 121,
-        "spouse": 254,
-        "family": 160
-      },
-    },
-    {
-      "id": 2,
       "name": "PCHC Medical Home: Preferred Provider Organization (PPO)",
       "fullTime": {
         "employee": 71,
@@ -33,26 +17,26 @@ var benefitsJSON = {
       },
     },
     {
-      "id": 3,
-      "name": "High Deductible Health Plan/Health Savings Account (HDHP/HSA)",
+      "id": 2,
+      "name": "Preferred Provider Organization (PPO)",
       "fullTime": {
-        "employee": 55,
-        "children": 65.50,
-        "spouse": 126.50,
-        "family": 51.50
+        "employee": 89,
+        "children": 73,
+        "spouse": 153,
+        "family": 91
       },
       "partTime": {
-        "employee": 94.50,
-        "children": 119,
-        "spouse": 231,
-        "family": 110.5
+        "employee": 164,
+        "children": 133,
+        "spouse": 279,
+        "family": 176
       },
     },
     {
-      "id": 4,
+      "id": 3,
       "name": "PCHC Medical Home: High Deductible Health Plan/ Health Savings Account (HDHP/HSA)",
       "fullTime": {
-        "employee": 41.40,
+        "employee": 41.50,
         "children": 55,
         "spouse": 116,
         "family": 66
@@ -65,19 +49,19 @@ var benefitsJSON = {
       },
     },
     {
-      "id": 5,
-      "name": "PCHC Medical Home: High Risk High Deductible Health Plan/Health Savings Account (HDHP/HSA)",
+      "id": 4,
+      "name": "High Deductible Health Plan/Health Savings Account (HDHP/HSA)",
       "fullTime": {
-        "employee": 15,
-        "children": 19.88,
-        "spouse": 41.92,
-        "family": 27.47
+        "employee": 51.50,
+        "children": 65,
+        "spouse": 126,
+        "family": 56
       },
       "partTime": {
-        "employee": 30.51,
-        "children": 40.42,
-        "spouse": 85.25,
-        "family": 55.88
+        "employee": 94.50,
+        "children": 119,
+        "spouse": 231,
+        "family": 110.5
       },
     }
   ],
